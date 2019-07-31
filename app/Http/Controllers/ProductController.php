@@ -32,7 +32,7 @@ class ProductController extends Controller
     {
         $product = Product::all();
         $producttype = ProductType::all();
-        return view('admincp.sanpham.list', ['product'=>$product, 'producttype'=>$producttype]);
+        return view('admincp.sanpham.list', ['product' => $product, 'producttype' => $producttype]);
     }
 
     public function create()
@@ -42,15 +42,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),$this->rules);
-        if($validator->fails()){
+        $validator = Validator::make($request->all(), $this->rules);
+        if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        }else{
+        } else {
 
             $product = $this->product->add($request->all());
             $type = ProductType::find($product->id_type);
 
-            return response()-> json(['product'=>$product, 'type'=>$type]);
+            return response()->json(['product' => $product, 'type' => $type]);
         }
     }
 
@@ -60,7 +60,8 @@ class ProductController extends Controller
         return view('sanpham.show', ['sanpham' => $post]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
     }
 
@@ -73,9 +74,9 @@ class ProductController extends Controller
         } else {
             $this->product->updateProduct($request->all(), $id);
             $product = Product::findOrFail($id);
-            $type    = ProductType::find($product->id_type);
-            if($product->id_type == $type->id){
-                return response()->json(['product'=>$product, 'type'=>$type]);
+            $type = ProductType::find($product->id_type);
+            if ($product->id_type == $type->id) {
+                return response()->json(['product' => $product, 'type' => $type]);
             }
         }
 
@@ -88,14 +89,15 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function timkiem(Request $request){
+    public function timkiem(Request $request)
+    {
         $keyword = $request->keyword;
         $producttype = ProductType::all();
-        $list = Product::select('product.*')->join('producttype', 'product.id_type', '=' , 'producttype.id')
-            ->where('producttype.loaisanpham', 'like', '%'. $keyword . '%')
-            ->orwhere('product.name', 'like', '%'. $keyword . '%')->get();
+        $list = Product::select('product.*')->join('producttype', 'product.id_type', '=', 'producttype.id')
+            ->where('producttype.loaisanpham', 'like', '%' . $keyword . '%')
+            ->orwhere('product.name', 'like', '%' . $keyword . '%')->get();
 
-        return view('admincp.timkiem.search', ['product'=>$list, 'producttype'=>$producttype]);
+        return view('admincp.timkiem.search', ['product' => $list, 'producttype' => $producttype]);
     }
 
 }

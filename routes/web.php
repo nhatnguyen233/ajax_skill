@@ -13,22 +13,25 @@
 
 use App\SanPham;
 use App\ProductType;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', function(){
+Route::get('test', function () {
     return view('admincp.index1');
 });
 
-Route::get('admin/dangnhap','DangnhapController@getDangnhapAdmin');
+// Login
+
+Route::get('admin/dangnhap', 'DangnhapController@getDangnhapAdmin');
 Route::post('admin/dangnhap', 'DangnhapController@postDangnhapAdmin')->name('postDangnhap');
 Route::get('admin/logout', 'DangnhapController@logout')->name('logout');
 
+
+// Admin
 Route::prefix('admincp')->group(function () {
     Route::get('/', 'Auth\admin\AdminController@index')->name('admin.index')->middleware('adminLogin');
-
-    Route::resource('product', 'ProductController');
 
     Route::resource('sanpham', 'SanPhamController')->middleware('adminLogin');
     Route::post('timkiem', 'SanPhamController@timkiem')->name('sanpham.timkiem');
@@ -41,10 +44,6 @@ Route::prefix('admincp')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::resource('hocsinh', 'HocSinhController');
-
-
-Route::resource('posts','PostsController');
 Route::post('posts/changeStatus', array('as' => 'changeStatus', 'uses' => 'PostsController@changeStatus'));
 
 

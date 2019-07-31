@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SanPham extends Model
 {
-    protected $table ="sanpham";
+    protected $table = "sanpham";
 
-    protected $fillable = ['name', 'tomtat','danhgia', 'gia', 'id_type'];
+    protected $fillable = ['name', 'tomtat', 'danhgia', 'gia', 'id_type'];
 
-    public function producttype(){
-        return $this->belongsTo('App\ProductType','id_type', 'id');
+    public function producttype()
+    {
+        return $this->belongsTo('App\ProductType', 'id_type', 'id');
     }
 
     public function showSanPham()
@@ -26,22 +27,25 @@ class SanPham extends Model
         return SanPham::create($input);
     }
 
-    public function findId($id){
+    public function findId($id)
+    {
         $sanpham = SanPham::findOrFail($id);
         return $sanpham;
     }
 
-    public function updateSanPham($input, $id){
+    public function updateSanPham($input, $id)
+    {
         $request = new SanPham();
         $sanpham = $this->findId($id);
-        if($sanpham){
+        if ($sanpham) {
             return $sanpham->update($input);
         }
     }
 
-    public function deleteSanPham($id){
+    public function deleteSanPham($id)
+    {
         $sanpham = $this->findId($id);
-        if(sanpham){
+        if (sanpham) {
             return $sanpham->delete();
         }
     }

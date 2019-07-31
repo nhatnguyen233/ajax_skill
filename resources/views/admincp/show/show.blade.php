@@ -7,11 +7,13 @@
         <div class="panel panel-primary">
             <div class="panel-heading" style="height: 45px;">
                 @foreach($sanpham as $sp)
-                <h3 class="panel-title" style="position: relative;padding-top: 5px; font-size:30px;">Danh Sách {{ $sp->producttype->loaisanpham }}</h3>
+                    <h3 class="panel-title" style="position: relative;padding-top: 5px; font-size:30px;">Danh
+                        Sách {{ $sp->producttype->loaisanpham }}</h3>
                 @endforeach
             </div>
-            <form action="{{ route('loaisanpham.timkiem') }}" method="post" class="navbar-form navbar-left" role="search">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}";>
+            <form action="{{ route('loaisanpham.timkiem') }}" method="post" class="navbar-form navbar-left"
+                  role="search">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" ;>
                 <div class="form-group">
                     <input type="text" name="keyword" class="form-control timkiem" placeholder="Tìm kiếm">
                 </div>
@@ -20,7 +22,9 @@
             </form>
             <div class="panel-body">
                 <table class="table table-bordered" id="postTable">
-                    <a type="submit" id="add" class="btn btn-success add" style="margin-top:-8px;"><span id="" class='glyphicon glyphicon-check'></span> Thêm sản phẩm</a>
+                    <a type="submit" id="add" class="btn btn-success add" style="margin-top:-8px;"><span id=""
+                                                                                                         class='glyphicon glyphicon-check'></span>
+                        Thêm sản phẩm</a>
                     <thead>
                     <tr>
                         <th>Tên sản phẩm</th>
@@ -31,7 +35,7 @@
                         <th>Chỉnh sửa</th>
                     </tr>
                     </thead>
-                    <?php $stt=0; ?>
+                    <?php $stt = 0; ?>
                     <tbody>
                     @foreach($sanpham as $sp)
                         <?php $stt += 1; ?>
@@ -46,8 +50,15 @@
 
                             <td>
                             <!-- <button data-id="{{ $sp->id }}" data-title="{{ $sp->name }}" id="show" class="btn btn-success"><span>Xem</button> -->
-                                <button data-id="{{ $sp->id }}" data-name="{{ $sp->name }}" data-tomtat="{{ $sp->tomtat }}" data-danhgia="{{ $sp->danhgia }}" data-gia="{{ $sp->gia }}" id="edit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Sửa </button>
-                                <button data-id="{{ $sp->id }}" data-name="{{ $sp->name }}" class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span> Xóa </button>
+                                <button data-id="{{ $sp->id }}" data-name="{{ $sp->name }}"
+                                        data-tomtat="{{ $sp->tomtat }}" data-danhgia="{{ $sp->danhgia }}"
+                                        data-gia="{{ $sp->gia }}" id="edit" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-edit"></span> Sửa
+                                </button>
+                                <button data-id="{{ $sp->id }}" data-name="{{ $sp->name }}"
+                                        class="btn btn-danger delete"><span class="glyphicon glyphicon-trash"></span>
+                                    Xóa
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -77,7 +88,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Loại sản phẩm</label>
-                            <select class="form-control" name="id_type" id="typeAdd" style="width: 78.5%;margin-left: 115px; margin-top: -27px;">
+                            <select class="form-control" name="id_type" id="typeAdd"
+                                    style="width: 78.5%;margin-left: 115px; margin-top: -27px;">
                                 @foreach($producttype as $sp)
                                     <option value="{{ $sp->id }}" class="loaisp">{{ $sp->loaisanpham }}</option>
                                 @endforeach
@@ -93,7 +105,8 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="tomtat">Tóm tắt:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="tomtat_add" name="tomtat" cols="40" rows="5">{{ old('tomtat') }}</textarea>
+                                <textarea class="form-control" id="tomtat_add" name="tomtat" cols="40"
+                                          rows="5">{{ old('tomtat') }}</textarea>
                                 <small>Min: 2, Max: 500, only text</small>
                                 <p class="errorTT text-center alert alert-danger hidden"></p>
                             </div>
@@ -110,7 +123,7 @@
                             <label class="control-label col-sm-2" for="gia">Giá:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="gia" id="gia_add">
-                                <p class="errorGia text-center alert alert-danger hidden" ></p>
+                                <p class="errorGia text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
                         <!-- <div class="form-group">
@@ -154,7 +167,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Loại sản phẩm</label>
-                            <select class="form-control" name="id_type" id="typeEdit" style="width: 78.5%;margin-left: 115px; margin-top: -27px;">
+                            <select class="form-control" name="id_type" id="typeEdit"
+                                    style="width: 78.5%;margin-left: 115px; margin-top: -27px;">
                                 @foreach($producttype as $sp)
                                     <option value="{{ $sp->id }}" class="loaisp">{{ $sp->loaisanpham }}</option>
                                 @endforeach
@@ -163,7 +177,8 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="tomtat">Tóm tắt:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="tomtat_edit" name="tomtat" cols="40" rows="5"></textarea>
+                                <textarea class="form-control" id="tomtat_edit" name="tomtat" cols="40"
+                                          rows="5"></textarea>
                                 <small>Min: 2, Max: 500, only text</small>
                                 <p class="errorTT text-center alert alert-danger hidden"></p>
                             </div>
@@ -180,7 +195,7 @@
                             <label class="control-label col-sm-2" for="gia">Giá:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="gia" id="gia_edit">
-                                <p class="errorGia text-center alert alert-danger hidden" ></p>
+                                <p class="errorGia text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
                     </form>
@@ -207,7 +222,7 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h4 class="modal-title">Xóa sản phẩm</h4>
                 </div>
-                <p>  Bạn có chắc chắn xóa?</p>
+                <p> Bạn có chắc chắn xóa?</p>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary xoa" data-dismiss="modal">
                         <span id="" class='glyphicon glyphicon-check'></span> Có
@@ -237,7 +252,7 @@
     <script></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
-        $(window).load(function(){
+        $(window).load(function () {
             $('#postTable').removeAttr('style');
         })
     </script>
