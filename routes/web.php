@@ -41,7 +41,7 @@ Route::prefix('admincp')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-
+Route::resource('hocsinh', 'HocSinhController');
 
 
 Route::resource('posts','PostsController');
