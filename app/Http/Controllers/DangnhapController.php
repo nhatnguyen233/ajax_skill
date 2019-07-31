@@ -52,7 +52,11 @@ class DangnhapController extends Controller
 
     }
 
-
+    public function logout(){
+        return redirect('admin/dangnhap')->with(Auth::logout());
+        // Auth::logout();
+        // return redirect('admin/dangnhap');
+    }
 }
 
 
