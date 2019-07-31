@@ -45,7 +45,7 @@ Route::resource('hocsinh', 'HocSinhController');
 
 
 Route::resource('posts','PostsController');
-
+Route::post('posts/changeStatus', array('as' => 'changeStatus', 'uses' => 'PostsController@changeStatus'));
 
 
 
