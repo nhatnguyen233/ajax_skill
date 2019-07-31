@@ -31,7 +31,7 @@ class DangnhapController extends Controller
             'pass.max'          => 'Mật khẩu tối đa 32 kí tự'
         ];
 
-
+        $validator = Validator::make($request->all(), $rules, $messages);
 
     	if ($validator->fails()) {
             dd($validator->getMessageBag()->toArray());
